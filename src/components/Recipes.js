@@ -1,11 +1,10 @@
 import React from 'react';
-import Recipe from "./Recipe";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import actions from '../state/actions';
+import Recipe from './Recipe';
 
-export default class Recipes extends React.Component {
-    state = {
-        selectedRecipe: '',
-    };
-
+class Recipes extends React.Component {
     recipeHandler = (e) => {
         this.setState({selectedRecipe: e.target.innerHTML})
     };
@@ -15,6 +14,7 @@ export default class Recipes extends React.Component {
     };
 
     render() {
+        console.log(this);
         const recipe = this.state.selectedRecipe;
         return (
                 <div>
@@ -33,3 +33,19 @@ export default class Recipes extends React.Component {
         )
     }
 }
+
+const mapStateToRecipeAppProps = (state) => {
+    return {
+        recipes: state.all,
+        currentRecipe: state.currentRecipe,
+        isOpen: state.isOpen,
+    }
+};
+
+const mapDispatchToRecipeAppProps = (dispatch) => {
+    return {
+        actions: bindActionCreators(actions, dispatch)
+    }
+};
+
+export default connect(mapStateToRecipeAppProps, mapDispatchToRecipeAppProps)(Recipes);
