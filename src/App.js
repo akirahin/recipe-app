@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../src/state/store'
 import Recipes from './components/Recipes';
-import List from './components/List';
+import List from './components/List';import './App.scss';
 
 function AppRouter() {
     return (
-        <Provider store={store}>
+        <Provider store={store} >
             <Router>
-                <div>
+                <div className='app'>
                     <nav>
                         <ul>
                             <li>
