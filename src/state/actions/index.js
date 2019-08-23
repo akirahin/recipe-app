@@ -1,18 +1,17 @@
 import * as action from './actionTypes';
-import recipes from '../../data/recipes'
 
 const actions = {
-    getAllRecipes: () => {
+    getAllRecipes: (recipes) => {
         return {
             type: action.GET_ALL_RECIPES,
             recipes
         }
     },
 
-    setCurrentRecipe: (recipe) => {
+    setCurrentRecipe: (id) => {
         return {
             type: action.SET_CURRENT_RECIPE,
-            recipe
+            id
         }
     },
 
