@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import actions from '../state/actions';
+import { actions } from '../state/actions';
 import Recipe from './Recipe';
 import recipes from "../data/recipes";
 
@@ -17,19 +17,17 @@ class Recipes extends React.Component {
     };
 
     render() {
-        console.log(this);
         return (
                 <div>
                     <h2>Recipes</h2>
-                    {!this.props.selected && <ul onClick={this.recipeHandler}>
-                        {this.props.recipes.map((recipe, i) => <li key={recipe.id} data-recipe={i}>{recipe.name}</li>)}
-                    </ul>}
+                    {this.props.selected ?
+                        <button onClick={this.props.actions.hideRecipe}>Back to Contents</button> :
+                        <ul onClick={this.recipeHandler}>
+                            {this.props.recipes.map((recipe, i) => <li key={recipe.id} data-recipe={i}>{recipe.name}</li>)}
+                        </ul>
+                    }
 
-                    {this.props.selected &&
-                    <div>
-                        <Recipe recipe={this.props.recipes[this.props.currentRecipe]}/>
-                        <button onClick={this.props.actions.hideRecipe}>Back</button>
-                    </div>}
+                    {this.props.selected && <Recipe recipe={this.props.recipes[this.props.currentRecipe]}/>}
                 </div>
         )
     }

@@ -1,6 +1,6 @@
 import * as action from './actionTypes';
 
-const actions = {
+export const actions = {
     getAllRecipes: (recipes) => {
         return {
             type: action.GET_ALL_RECIPES,
@@ -28,4 +28,11 @@ const actions = {
     }
 };
 
-export default actions;
+export const listActions = {
+    add: (ingredient) => {
+        return {
+            type: action.ADD_TO_LIST,
+            ingredient
+        }
+    }
+};
