@@ -3,32 +3,33 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../state/actions';
 import Recipe from './Recipe';
+import recipes from "../data/recipes";
 
 class Recipes extends React.Component {
-    recipeHandler = (e) => {
-        this.setState({selectedRecipe: e.target.innerHTML})
-    };
+    componentDidMount() {
+        this.props.actions.getAllRecipes(recipes);
+    }
 
-    backHandler = () => {
-        this.setState({selectedRecipe: ''})
+    recipeHandler = (e) => {
+        const selected = e.target.dataset.recipe;
+        this.props.actions.setCurrentRecipe(selected);
+        this.props.actions.showRecipe();
     };
 
     render() {
         console.log(this);
-        const recipe = this.state.selectedRecipe;
         return (
                 <div>
                     <h2>Recipes</h2>
-                    <ul onClick={this.recipeHandler}>
-                        <li>
-                            Recipe 1
-                        </li>
-                        <li>
-                            Recipe 2
-                        </li>
-                    </ul>
-                    <button onClick={this.backHandler}>Back</button>
-                    {this.state.selectedRecipe && <Recipe recipe={recipe}/>}
+                    {!this.props.selected && <ul onClick={this.recipeHandler}>
+                        {this.props.recipes.map((recipe, i) => <li key={recipe.id} data-recipe={i}>{recipe.name}</li>)}
+                    </ul>}
+
+                    {this.props.selected &&
+                    <div>
+                        <Recipe recipe={this.props.recipes[this.props.currentRecipe]}/>
+                        <button onClick={this.props.actions.hideRecipe}>Back</button>
+                    </div>}
                 </div>
         )
     }
@@ -36,9 +37,9 @@ class Recipes extends React.Component {
 
 const mapStateToRecipeAppProps = (state) => {
     return {
-        recipes: state.all,
-        currentRecipe: state.currentRecipe,
-        isOpen: state.isOpen,
+        recipes: state.RecipeReducer.all,
+        currentRecipe: state.RecipeReducer.currentRecipe,
+        selected: state.RecipeReducer.selected,
     }
 };
 

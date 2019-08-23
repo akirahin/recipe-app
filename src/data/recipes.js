@@ -1,21 +1,34 @@
 const recipes = [
     {
-        name: 'Omelette',
+        id: 1,
+        name: "Spaghetti",
+        instructions: "Open jar of Spaghetti sauce.  Bring to simmer.  Boil water.  Cook pasta until done.  Combine pasta and sauce",
         ingredients: [
-            '3 Eggs', '1/3 cup Grated chedder cheese', 'half cup of spinach', '1/4 cup of diced onions'
+            "pasta",
+            "8 cups water",
+            "1 box spaghetti"
         ],
-        directions: 'Pay someone else to make your Omelette!'
     },
     {
-        name: 'Chicken Quesadilla',
+        id: 2,
+        name: "Milkshake",
+        instructions: "Combine ice cream and milk.  Blend until creamy",
         ingredients: [
-            '2 tortillas',
-            '1/4c chedderjack cheese',
-            '1/4c diced tomatoes',
-            '1/4c diced chicken breast (cooked)',
-            '1tbsp butter'
+            "2 Scoops Ice cream",
+            "8 ounces milk"
         ],
-        directions: 'Pay someone else to make your quesadilla!'
+    },
+    {
+        id: 3,
+        name: "Avocado Toast",
+        instructions: "Toast bread.  Slice avocado and spread on bread.  Add salt, oil, and pepper to taste.",
+        ingredients: [
+            "2 slices of bread",
+            "1 avocado",
+            "1 tablespoon olive oil",
+            "1 pinch of salt",
+            "pepper"
+        ],
     }
 ];
 

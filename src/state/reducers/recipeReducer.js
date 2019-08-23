@@ -1,31 +1,25 @@
 import * as actions from '../actions/actionTypes';
 
 const initialState = {
-    lastId: 0,
     all: [],
     currentRecipe: {id: null},
-    isOpen: false,
+    selected: false,
 };
 
 const RecipeReducer = (state = initialState, action) => {
     switch(action.type) {
         case actions.GET_ALL_RECIPES:
-            let lastId = state.lastId;
-            let recipes = action.recipes.all.map(recipe => {
-                lastId = lastId++;
-                recipe.id = lastId;
-                return recipe;
-            });
-            return {...state, lastId: lastId, all: recipes};
+            return {...state, all: action.recipes};
+
         case actions.SET_CURRENT_RECIPE:
-            let newCurrent = state.currentRecipe.id === action.recipe.id ? initialState.currentRecipe : action.recipe;
-            return {...state, currentRecipe: newCurrent};
+            return {...state, currentRecipe: action.id};
 
         case actions.SHOW_RECIPE:
-            return {...state, isOpen: true};
+            return {...state, selected: true};
 
         case actions.HIDE_RECIPE:
-            return {...state, isOpen: false};
+            return {...state, selected: false};
+
         default:
             return state;
     }
