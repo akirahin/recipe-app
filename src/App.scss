@@ -1,0 +1,15 @@
+@import './styles/variables';
+
+body {
+  margin: 0;
+}
+
+.app {
+  background: $background-color2;
+  width: 300px;
+  margin: 10% auto;
+
+  @media (min-width: $break-point){
+    width: 700px;
+  }
+}
