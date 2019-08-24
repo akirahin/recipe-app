@@ -33,13 +33,38 @@ nav {
 .nav {
   display: flex;
   justify-content: space-between;
-  width: 50%;
+  width: 75%;
   margin: 0 auto;
   list-style: none;
   padding: 0;
 
+  @media (min-width: $break-point){
+    font-size: 18px;
+    width: 50%;
+  }
+
   a {
     text-decoration: none;
     font-family: $font-montserrat;
+    font-size: 14px;
+    color: $primary-color;
+    padding: 10px;
+
+    @media (min-width: $break-point){
+      font-size: 18px;
+    }
+
+    &:hover {
+      background: rgba($accent-color, .5);
+    }
+  }
+
+}
+
+a.active-tab {
+  text-decoration: underline;
+
+  &:hover {
+    background: none;
   }
 }

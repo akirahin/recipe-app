@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../src/state/store'
 import Recipes from './components/Recipes';
@@ -13,10 +13,10 @@ function AppRouter() {
                     <nav>
                         <ul className='nav'>
                             <li>
-                                <Link to="/">Recipes</Link>
+                                <NavLink exact to="/" activeClassName='active-tab'>Recipes</NavLink>
                             </li>
                             <li>
-                                <Link to="/list/">Shopping List</Link>
+                                <NavLink to="/list/" activeClassName='active-tab'>Shopping List</NavLink>
                             </li>
                         </ul>
                     </nav>
