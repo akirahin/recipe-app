@@ -1,0 +1,65 @@
+@import '../styles/variables';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 400px;
+  width: 300px;
+  background: rgba($background-color2, 0.5);
+  margin-top: 20px;
+  border-radius: 10px;
+  padding: 20px;
+}
+.subHeader {
+  font-family: $font-montserrat;
+  font-size: 12px;
+  margin-top: 10px;
+  color: $secondary-color;
+
+  &Hide {
+    display: none;
+  }
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: auto;
+  width: 100%;
+
+  &Item {
+    height: 30px;
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+
+    &:hover {
+      background: rgba($secondary-color, 0.4);
+    }
+  }
+}
+
+.back {
+  border: none;
+  height: 30px;
+  padding: 0 11px;
+  margin: 10px 0;
+  background: rgba($bright-color, 0.5);
+  border-radius: 3px;
+  font-family: $font-montserrat;
+  font-size: 11px;
+  color: $secondary-color;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba($bright-color, 0.4);
+    color: $primary-color;
+  }
+
+  &:active {
+    transform: scale(.9);
+  }
+}
+

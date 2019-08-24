@@ -2,21 +2,29 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {listActions} from '../state/actions';
+import styles from './Ingredients.module.scss';
 
 class Ingredients extends React.Component {
     addHandler = (e) => {
         const button = e.target;
         this.props.actions.add(button.dataset.ingredient);
-        button.innerHTML = 'added';
+        button.innerHTML = '&#10004;';
         button.disabled = true;
     };
 
     render() {
         const {list} = this.props;
         return (
-            <ol onClick={this.addHandler}>
-                {list.map((item, id) => <li key={id}><span>{item}</span><button data-ingredient={item}>+</button></li>)}
-            </ol>
+            <div>
+                <div className={styles.subHeader}>Ingredients:</div>
+                <ul className={styles.list} onClick={this.addHandler}>
+                    {list.map((item, id) =>
+                        <li className={styles.listItem} key={id}>
+                            <span>{item}</span>
+                            <button className={styles.addBtn} data-ingredient={item}>Add to List</button>
+                        </li>)}
+                </ul>
+            </div>
         )
     }
 }
