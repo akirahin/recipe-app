@@ -10,8 +10,6 @@ class Ingredients extends React.Component {
         e.preventDefault();
         const button = e.target;
         this.props.actions.add(button.dataset.ingredient);
-        button.innerHTML = '&#10004;';
-        button.disabled = true;
     };
 
     render() {
@@ -23,7 +21,9 @@ class Ingredients extends React.Component {
                     {list.map((item, id) =>
                         <li className={styles.listItem} key={id}>
                             <span>{item}</span>
-                            <button className={styles.addBtn} data-ingredient={item} onClick={this.addHandler}>Add to List</button>
+                            {this.props.ingredients.includes(item) ?
+                                <button className={styles.addBtn} disabled>&#10004;</button>:
+                                <button className={styles.addBtn} data-ingredient={item} onClick={this.addHandler}>Add to List</button>}
                         </li>)}
                 </ul>
             </div>
@@ -31,10 +31,16 @@ class Ingredients extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        ingredients: state.ListReducer.ingredients
+    }
+};
+
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators(listActions, dispatch)
     }
 };
 
-export default connect(null, mapDispatchToProps)(Ingredients);
+export default connect(mapStateToProps, mapDispatchToProps)(Ingredients);
