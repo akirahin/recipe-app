@@ -1,0 +1,14 @@
+@import './Recipes.module';
+
+.shopList {
+  margin: auto;
+
+  li {
+    margin: 5px auto;
+  }
+}
+
+.bought {
+  opacity: .6;
+  text-decoration: line-through;
+}
