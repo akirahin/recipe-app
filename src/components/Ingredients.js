@@ -6,6 +6,8 @@ import styles from './Ingredients.module.scss';
 
 class Ingredients extends React.Component {
     addHandler = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
         const button = e.target;
         this.props.actions.add(button.dataset.ingredient);
         button.innerHTML = '&#10004;';
@@ -17,11 +19,11 @@ class Ingredients extends React.Component {
         return (
             <div>
                 <div className={styles.subHeader}>Ingredients:</div>
-                <ul className={styles.list} onClick={this.addHandler}>
+                <ul className={styles.list}>
                     {list.map((item, id) =>
                         <li className={styles.listItem} key={id}>
                             <span>{item}</span>
-                            <button className={styles.addBtn} data-ingredient={item}>Add to List</button>
+                            <button className={styles.addBtn} data-ingredient={item} onClick={this.addHandler}>Add to List</button>
                         </li>)}
                 </ul>
             </div>
