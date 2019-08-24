@@ -11,7 +11,7 @@ function AppRouter() {
             <Router>
                 <div className='app'>
                     <nav>
-                        <ul>
+                        <ul className='nav'>
                             <li>
                                 <Link to="/">Recipes</Link>
                             </li>

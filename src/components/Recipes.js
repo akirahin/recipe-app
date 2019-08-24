@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actions } from '../state/actions';
 import Recipe from './Recipe';
-import recipes from "../data/recipes";
+import recipes from '../data/recipes';
+import styles from './Recipes.module.scss';
 
 class Recipes extends React.Component {
     componentDidMount() {
@@ -18,12 +19,13 @@ class Recipes extends React.Component {
 
     render() {
         return (
-                <div>
-                    <h2>Recipes</h2>
+                <div className={styles.container}>
+                    <h2 className={styles.header}>Recipes</h2>
+                    {!this.props.selected && <div className={styles.subHeader}>Select a Recipe</div>}
                     {this.props.selected ?
-                        <button onClick={this.props.actions.hideRecipe}>Back to Contents</button> :
-                        <ul onClick={this.recipeHandler}>
-                            {this.props.recipes.map((recipe, i) => <li key={recipe.id} data-recipe={i}>{recipe.name}</li>)}
+                        <button onClick={this.props.actions.hideRecipe} className={styles.back}>Back to Contents</button> :
+                        <ul onClick={this.recipeHandler} className={styles.list}>
+                            {this.props.recipes.map((recipe, i) => <li key={recipe.id} data-recipe={i} className={styles.listItem}>{recipe.name}</li>)}
                         </ul>
                     }
 
